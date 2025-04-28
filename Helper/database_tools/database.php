@@ -7,7 +7,7 @@ class Mysql_api_code
 {
     private $db;
 
-    public function __construct($db)
+    protected function __construct($db)
     {
         $this->db = $db;
     }
@@ -19,16 +19,32 @@ class Mysql_api_code
      * @return mysql_result|bool  
      * @see https://t.me/api_tele 
      */
-    public function sql_write($dir, $values)
+    protected function sql_write($dir, $values)
     {
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
         if ($this->db) {
-            return mysqli_query($this->db, "INSERT INTO $dir $values");
+            // تأكد أن $values مصفوفة
+            if (!is_array($values)) {
+                $values = [$values];
+            }
+            $columns = implode(", ", array_keys($values));
+            $escaped_values = array_map(function ($value) {
+                if ($value === null || $value === '') {
+                    return "NULL";
+                }
+                return "'" . mysqli_real_escape_string($this->db, $value) . "'";
+            }, array_values($values));
+            $values_string = implode(", ", $escaped_values);
+
+            $query = "INSERT INTO $dir ($columns) VALUES ($values_string)";
+            return mysqli_query($this->db, $query);
         } else {
             return false;
         }
     }
+   
+    
     /** 
      * Read from the col in mysql 
      * @param string $dir name the folder 
@@ -36,7 +52,7 @@ class Mysql_api_code
      * @return array|false  
      * @see https://t.me/api_tele 
      */
-    public function sql_read($dir, $file)
+    protected function sql_read($dir, $file)
     {
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
@@ -54,7 +70,27 @@ class Mysql_api_code
         }
     }
 
-    public function sql_readarray($dir)
+
+    /** 
+     * where fun in mysql 
+     * @param string $dir name the folder 
+     * @return array|false  
+     * @see https://t.me/api_tele 
+     */
+    protected function sql_where($dir, $file, $value)
+    {
+        mysqli_query($this->db, "SET NAMES utf8");
+        mysqli_query($this->db, "SET CHARACTER SET utf8");
+        if ($this->db) {
+            $re = mysqli_query($this->db, "SELECT * FROM $dir WHERE $file='$value' ");
+            $arr = mysqli_fetch_all($re, MYSQLI_ASSOC);
+            return $arr;
+        } else {
+            return false;
+        }
+    }
+
+    protected function sql_readarray($dir)
     {
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
@@ -73,7 +109,7 @@ class Mysql_api_code
      * @return array|false  
      * @see https://t.me/api_tele 
      */
-    public function sql_edit($dir, $file, $old_value, $new_value)
+    protected function sql_edit($dir, $file, $old_value, $new_value)
     {
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
@@ -91,7 +127,7 @@ class Mysql_api_code
      * @return  mysqli_result|false  
      * @see https://t.me/api_tele 
      */
-    public function sql_del($dir, $file, $value)
+    protected function sql_del($dir, $file, $value)
     {
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
@@ -108,7 +144,7 @@ class Mysql_api_code
      * @return array|false  
      * @see https://t.me/api_tele 
      */
-    public function sql_create_table($name, $names_col = [])
+    protected function sql_create_table($name, $names_col = [])
     {
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
@@ -125,7 +161,7 @@ class Mysql_api_code
      * check if table exists in mysql
      * @param string $name name the table
      */
-    public function sql_check_table($name)
+    protected function sql_check_table($name)
     {
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
@@ -143,7 +179,7 @@ class Mysql_api_code
      * @return array|false  
      * @see https://t.me/api_tele 
      */
-    public function sql_add_col($name_T, $name_col)
+    protected function sql_add_col($name_T, $name_col)
     {
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
