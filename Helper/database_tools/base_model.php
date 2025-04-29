@@ -1,5 +1,6 @@
 <?php
 include_once 'database.php';
+
 class Base_model extends Mysql_api_code
 {
     static private $conn;
@@ -18,7 +19,7 @@ class Base_model extends Mysql_api_code
         }
 
         if (self::$conn == null) {
-            $conn = mysqli_connect("localhost", "root", "", "omar_store");
+            $conn = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
