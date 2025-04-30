@@ -1,5 +1,9 @@
 <?php
 include_once 'Helper/inital.php';
+include_once 'Controllers/main_controller.php';
+
+$data = main_controller();
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +18,24 @@ include_once 'Helper/inital.php';
 <body>
     <h1>Welcome to the Store</h1>
     <p>This is a simple store page.</p>
-    <a href="products.php">View Products</a>
+    <a href="login.php">login</a><br>
+    <a href="register.php">register</a>
+    <hr>
+
+    <?php
+    if (!empty($data['products'])):
+        foreach ($data['products'] as $e):
+    ?>
+            <div><?= $e['name']; ?></div>
+
+        <?php
+        endforeach;
+    else:
+        ?>
+        <h1>not found products</h1>
+    <?php
+    endif;
+    ?>
 </body>
 
 </html>
