@@ -1,18 +1,20 @@
 <?php
 
+function checkAuth()
+{
+    return isset($_SESSION['user']['id']); 
+}
 
 function authMiddleware($requireAdmin = false)
 {
 
-    if (isset($_SESSION['user'])) {
+    if (checkAuth()) {
         $user = User::get_data_by_id($_SESSION['user']['id']);
         if (!$user) {
-            go('login');
+            go('login',null,false);
         }
         if ($requireAdmin && $user['role'] != 'admin') {
-            go('404');
+            go('404',null,false);
         }
-    } else {
-        go('login');
-    }
+    } 
 }

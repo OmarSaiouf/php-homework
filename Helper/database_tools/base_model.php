@@ -31,9 +31,8 @@ class Base_model extends Mysql_api_code
         }
     }
 
-    static public function get_instance()
+    static private function get_instance()
     {
-
         return new static();
     }
 

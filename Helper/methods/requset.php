@@ -30,24 +30,20 @@ function request(): array
 function go($url, $arg = null, $return = true)
 {
     $url = DOMIN  . $url;
-    $query = http_build_query($arg);
     $urlParts = explode(".", $url);
     if (end($urlParts) != 'php') {
         $url .= '.php';
     }
-    if (!empty($query)) {
-        $url .= (strpos($url, '?') === false ? '?' : '&') . $query;
+    if ($arg) {
+        $query = http_build_query($arg);
+        if (!empty($query)) {
+            $url .= (strpos($url, '?') === false ? '?' : '&') . $query;
+        }
     }
     if ($return) {
         return $url;
     } else {
-
-        if (!headers_sent()) {
-            header("Location: $url");
-            exit;
-        } else {
-            echo "<script>window.location.href='" . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . "';</script>";
-            exit;
-        }
+        echo "<script>window.location.href='" . htmlspecialchars($url) . "';</script>";
+        exit;
     }
 }

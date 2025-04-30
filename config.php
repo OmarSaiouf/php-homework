@@ -8,6 +8,6 @@ const DB_PASSWORD = '';
 
 
 //Base paths
-define('DOMIN', isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : './');
+define('DOMIN', isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
 const BASE_STORAGE = 'assets/storage';
 const PRODUCT_PATH = BASE_STORAGE . '/products';
