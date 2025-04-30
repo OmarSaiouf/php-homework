@@ -27,7 +27,7 @@ function request(): array
     return $data;
 }
 
-function go($url, $arg, $return = true)
+function go($url, $arg = null, $return = true)
 {
     $url = DOMIN  . $url;
     $query = http_build_query($arg);

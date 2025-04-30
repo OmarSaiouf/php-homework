@@ -82,13 +82,14 @@ class Mysql_api_code
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
         if ($this->db) {
-            $re = mysqli_query($this->db, "SELECT * FROM $dir WHERE $file='$value' ");
+            $re = mysqli_query($this->db, "SELECT * FROM $dir WHERE $file='$value'");
             $arr = mysqli_fetch_all($re, MYSQLI_ASSOC);
-            return $arr;
+            return !empty($arr) ? $arr : false;
         } else {
             return false;
         }
     }
+   
 
     protected function sql_readarray($dir)
     {
