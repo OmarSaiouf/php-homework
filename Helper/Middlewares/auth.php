@@ -1,6 +1,5 @@
 <?php 
 
-
 function authMiddleware($requireAdmin = false){
     
     if(isset($_SESSION['user'])){
