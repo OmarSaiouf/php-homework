@@ -1,7 +1,5 @@
 <?php 
 
-include_once '../methods/requset.php';
-
 function authMiddleware($requireAdmin = false){
     
     if(isset($_SESSION['user'])){
