@@ -6,8 +6,7 @@ function validations(array $params)
     $data = [];
     $errors = [];
     $request = request();
-    
-    if(count($request) == 1) return false;
+    if(count($request) == 0) return false;
 
     foreach ($params as $param => $value) {
 

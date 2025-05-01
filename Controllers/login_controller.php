@@ -24,7 +24,6 @@ function login_controller()
             }
         } else {
             echo "the email is not found";
-
         }
     }
 }

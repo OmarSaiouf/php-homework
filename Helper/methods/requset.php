@@ -9,9 +9,6 @@ function request(): array
     if (isset($_GET)) {
         $data = array_merge($data, $_GET);
     }
-    if (isset($_COOKIE)) {
-        $data = array_merge($data, $_COOKIE);
-    }
     if (isset($_FILES)) {
         $data = array_merge($data, $_FILES);
     }
@@ -29,7 +26,8 @@ function request(): array
 
 function go($url, $arg = null, $return = true)
 {
-    $url = DOMIN  . $url;
+    
+    $url = URL . '/' . $url;
     $urlParts = explode(".", $url);
     if (end($urlParts) != 'php') {
         $url .= '.php';

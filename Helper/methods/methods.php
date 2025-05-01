@@ -9,7 +9,7 @@ function random_float($min, $max, $decimals = 2)
 
 function storage($path)
 {
-    return DOMIN . '/assets/storage/' . $path;
+    return URL . "/" . BASE_STORAGE . "/" . $path;
 }
 
 function get_session($key)
