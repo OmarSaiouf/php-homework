@@ -1,4 +1,6 @@
 <?php
+const STORE_NAME = "OMAR";
+
 
 // Database conn
 const DB_HOST = 'localhost';
