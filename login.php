@@ -1,6 +1,5 @@
 <?php
 include_once 'Helper/inital.php';
+include_once "Controllers/login_controller.php";
 
-if (checkAuth()) {
-    go('products', null, false);
-}
+$data = login_controller();
