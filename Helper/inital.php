@@ -6,6 +6,7 @@ include_once 'Models/user.php';
 include_once 'Models/product.php';
 include_once 'methods/requset.php';
 include_once 'methods/methods.php';
+include_once 'Helper/validations/validations.php';
 include_once 'Middlewares/auth.php';
 include_once 'Helper/database_tools/seeder.php';
 
@@ -42,8 +43,6 @@ seeder(Product::class, function($i){
         ],
 
     ];
-
-
     return $products[$i];
 }, $for = 2);
 
