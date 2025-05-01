@@ -62,16 +62,16 @@ $data = main_controller();
         <div class="text-center align-items-center row g-3 mt-5">
             <?php
             if (!empty($data['products'])):
-                foreach ($data['products'] as $e):
+                foreach ($data['products'] as $product):
             ?>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="card product-card text-center p-3">
-                            <img src="https://i.imgur.com/EoQwK9L.png" class="card-img-top product-image mx-auto" alt="Strawberry">
+                            <img src="<?= storage($product['image']) ?>" class="card-img-top product-image mx-auto" alt="<?= $product['product_name'] ?>">
                             <div class="card-body">
-                                <h5 class="card-title fw-bold">Strawberry</h5>
-                                <p class="text-muted mb-2">Per Kg</p>
-                                <div class="price mb-3">85$</div>
-                                <a href="#" class="btn btn-warning w-100">Add to Cart</a>
+                                <h5 class="card-title fw-bold"><?= $product['product_name'] ?></h5>
+                                <p class="text-muted mb-2"><?= $product['description'] ?></p>
+                                <div class="price mb-3"><?= $product['price'] ?>$</div>
+                                <a href="#" class="btn btn-warning w-100"  data-bs-toggle="modal" data-bs-target="#exampleModal">Add to Cart</a>
                             </div>
                         </div>
                     </div>
@@ -88,12 +88,28 @@ $data = main_controller();
             ?>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">لاتزعل:</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    نصيبك بالجنة
+                </div>
+               
+            </div>
+        </div>
+    </div>
     <footer class="bg-dark text-white text-center py-3 mt-5">
         <div class="container">
             <p>&copy; <?= date('Y'); ?> <?= STORE_NAME; ?>. All Rights Reserved.</p>
             <p>Designed with ❤️ by <?= STORE_NAME; ?> Team</p>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 
 </html>
