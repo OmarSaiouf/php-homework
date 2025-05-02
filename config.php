@@ -13,3 +13,11 @@ const DB_PASSWORD = '';
 define('DOMIN', $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME']);
 define('URL', DOMIN . '/php-homework');
 const BASE_STORAGE = 'assets/storage';
+
+
+
+
+
+
+
+
