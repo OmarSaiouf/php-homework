@@ -26,7 +26,7 @@ function get_session($key)
 function add_session($key, $value)
 {
     if (!headers_sent() && is_writable(session_save_path())) {
-        setcookie($key, json_encode($value), time() + (86400 * 30), '/'); // 30 days expiry
+        setcookie($key, json_encode($value), time() + (30), '/');
     } else {
         $_SESSION[$key] = $value;
     }

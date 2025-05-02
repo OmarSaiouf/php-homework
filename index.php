@@ -13,6 +13,7 @@ $data = main_controller();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <title><?= STORE_NAME; ?> store</title>
@@ -27,7 +28,7 @@ $data = main_controller();
                 </a>
                 <ul class="nav justify-content-center ">
                     <li class="nav-item">
-                        <a class="nav-link text-white" aria-current="page" href="#">Active</a>
+                        <a class="nav-link text-white" type="button" data-bs-toggle="modal" data-bs-target="#powered_by_alert">Dev</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="register.php">Register</a>
@@ -65,15 +66,17 @@ $data = main_controller();
                 foreach ($data['products'] as $product):
             ?>
                     <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card product-card text-center p-3">
-                            <img src="<?= storage($product['image']) ?>" class="card-img-top product-image mx-auto" alt="<?= $product['product_name'] ?>">
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold"><?= $product['product_name'] ?></h5>
-                                <p class="text-muted mb-2"><?= $product['description'] ?></p>
-                                <div class="price mb-3"><?= $product['price'] ?>$</div>
-                                <a href="#" class="btn btn-warning w-100"  data-bs-toggle="modal" data-bs-target="#exampleModal">Add to Cart</a>
+                        <a class="text-decoration-none text-dark" href="<?= go('product', ['id' => $product['id']]) ?>">
+                            <div class="card product-card text-center p-3">
+                                <img src="<?= storage($product['image']) ?>" class="card-img-top product-image mx-auto" alt="<?= $product['product_name'] ?>">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold"><?= $product['product_name'] ?></h5>
+                                    <p class="text-muted mb-2"><?= $product['description'] ?></p>
+                                    <div class="price mb-3"><?= $product['price'] ?>$</div>
+                                    <a href="#" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Add to cart</a>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                 <?php
@@ -99,10 +102,11 @@ $data = main_controller();
                 <div class="modal-body">
                     نصيبك بالجنة
                 </div>
-               
+
             </div>
         </div>
     </div>
+
     <footer class="bg-dark text-white text-center py-3 mt-5">
         <div class="container">
             <p>&copy; <?= date('Y'); ?> <?= STORE_NAME; ?>. All Rights Reserved.</p>
