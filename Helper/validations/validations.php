@@ -6,7 +6,7 @@ function validations(array $params)
     $data = [];
     $errors = [];
     $request = request();
-    if(count($request) == 0) return false;
+    if (count($request) == 0) return false;
 
     foreach ($params as $param => $value) {
 
@@ -14,22 +14,24 @@ function validations(array $params)
 
         foreach (explode("|", $value) as $e) {
 
-            $input = explode(':', $e);
+            if ($e != '' || $e != null) {
+                $input = explode(':', $e);
 
-            if (count($input) > 1) {
+                if (count($input) > 1) {
 
-                $valid = $input[0]($reqData, $input[1]);
+                    $valid = $input[0]($reqData, $input[1]);
 
-                if ($valid[0]) {
+                    if ($valid[0]) {
 
-                    $errors[] = $valid[1];
-                }
-            } else {
-                $valid = $e($reqData);
+                        $errors[] = $valid[1];
+                    }
+                } else {
+                    $valid = $e($reqData);
 
-                if ($valid[0]) {
+                    if ($valid[0]) {
 
-                    $errors[] = $valid[1];
+                        $errors[] = $valid[1];
+                    }
                 }
             }
         }

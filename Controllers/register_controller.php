@@ -9,7 +9,7 @@ function register_controller()
     $data = validations([
         "username" => "required",
         'email' => "required|isEmail|where:User,email",
-        'password' => "required|password:4"
+        'password' => "required|password:6"
     ]);
     if ($data) {
         $data['role'] = 'user';

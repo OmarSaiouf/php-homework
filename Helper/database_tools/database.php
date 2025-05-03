@@ -43,8 +43,8 @@ class Mysql_api_code
             return false;
         }
     }
-   
-    
+
+
     /** 
      * Read from the col in mysql 
      * @param string $dir name the folder 
@@ -89,7 +89,7 @@ class Mysql_api_code
             return false;
         }
     }
-   
+
 
     protected function sql_readarray($dir)
     {
@@ -115,7 +115,13 @@ class Mysql_api_code
         mysqli_query($this->db, "SET NAMES utf8");
         mysqli_query($this->db, "SET CHARACTER SET utf8");
         if ($this->db) {
-            return mysqli_query($this->db, "UPDATE $dir SET $file='$new_value' WHERE id='$old_value' ");
+            $set_values = [];
+            foreach ($new_value as $column => $value) {
+                $escaped_value = mysqli_real_escape_string($this->db, $value);
+                $set_values[] = "$column='$escaped_value'";
+            }
+            $set_string = implode(", ", $set_values);
+            return mysqli_query($this->db, "UPDATE $dir SET $set_string WHERE id='$old_value'");
         } else {
             return false;
         }
