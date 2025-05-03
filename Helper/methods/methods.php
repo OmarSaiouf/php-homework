@@ -9,7 +9,12 @@ function random_float($min, $max, $decimals = 2)
 
 function storage($path)
 {
-    return URL . "/" . BASE_STORAGE . "/" . $path;
+    if (!empty($path) || $path != '') {
+        return URL . "/" . BASE_STORAGE . "/" . $path;
+    } else {
+
+        return URL . "/" . BASE_STORAGE . "/image.png";
+    }
 }
 
 function get_session($key)
