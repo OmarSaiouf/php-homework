@@ -104,15 +104,15 @@ $products = products_controller();
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Are you sure you want to delete <?= $product['product_name']."   ".$product['id'] ?>?
+                                    Are you sure you want to delete <?= $product['product_name']?>?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <form id="deleteproductForm" method="post">
+                                    <form id="deleteproductForm<?= $product['id'] ?>" method="post">
                                         <input type="hidden" name="method" value="delete">
                                         <input type="hidden" name="id" value="<?= $product['id'] ?>">
 
-                                        <a onclick="document.getElementById('deleteproductForm').submit()" class="btn btn-danger">Delete</a>
+                                        <a onclick="document.getElementById('deleteproductForm<?= $product['id'] ?>').submit()" class="btn btn-danger">Delete</a>
                                     </form>
                                 </div>
                             </div>

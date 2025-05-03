@@ -103,11 +103,11 @@ $users = users_controller();
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <form id="deleteUserForm" method="post">
+                                    <form id="deleteUserForm<?= $user['id'] ?></form>" method="post">
                                         <input type="hidden" name="method" value="delete">
                                         <input type="hidden" name="id" value="<?= $user['id'] ?>">
 
-                                        <a onclick="document.getElementById('deleteUserForm').submit()" class="btn btn-danger">Delete</a>
+                                        <a onclick="document.getElementById('deleteUserForm<?= $user['id'] ?>').submit()" class="btn btn-danger">Delete</a>
                                     </form>
                                 </div>
                             </div>
