@@ -3,9 +3,6 @@ include_once 'Helper/inital.php';
 include_once 'Controllers/products_controller.php';
 
 $products = products_controller();
-// echo '<pre>';
-// print_r($products);
-// echo '</pre>';
 ?>
 
 <!DOCTYPE html>

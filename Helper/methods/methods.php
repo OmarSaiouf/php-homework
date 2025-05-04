@@ -47,3 +47,14 @@ function delete_session($key)
         setcookie($key, '', time() - 3600, '/');
     }
 }
+
+
+function alert($message)
+{
+    echo <<< h
+<div class="alert alert-danger alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x text-center mt-3 px-5 shadow" role="alert" style="z-index: 1055; max-width: 500px;">
+ $message
+  <button type="button" class="btn-close ms-2" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+h;
+}

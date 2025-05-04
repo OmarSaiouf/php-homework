@@ -20,6 +20,7 @@ $data = main_controller();
 </head>
 
 <body>
+
     <div class="nav-contect">
         <nav class="navbar bg-transparent">
             <div class="container">
@@ -31,10 +32,18 @@ $data = main_controller();
                         <a class="nav-link text-white" type="button" data-bs-toggle="modal" data-bs-target="#powered_by_alert">Dev</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="register.php">Register</a>
+                        <?php if (checkAuth()) { ?>
+                            <a class="nav-link text-white" href="products.php">Products</a>
+                        <?php } else { ?>
+                            <a class="nav-link text-white" href="register.php">Register</a>
+                        <?php } ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="login.php">Login</a>
+                        <?php if (checkAuth()) { ?>
+                            <a class="nav-link text-warning" href="login.php">Logout</a>
+                        <?php } else { ?>
+                            <a class="nav-link text-white" href="login.php">Login</a>
+                        <?php } ?>
                     </li>
                 </ul>
             </div>

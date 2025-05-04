@@ -29,7 +29,6 @@ function validations(array $params)
                     $valid = $e($reqData);
 
                     if ($valid[0]) {
-
                         $errors[] = $valid[1];
                     }
                 }
@@ -37,7 +36,7 @@ function validations(array $params)
         }
         if (!empty($errors)) {
             foreach ($errors as $error) {
-                echo 'Valid :' . $error;
+                alert($error);
             }
             return;
         }
