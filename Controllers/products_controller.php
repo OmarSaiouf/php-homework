@@ -4,10 +4,6 @@
 function products_controller()
 {
 
-    echo "<pre>";
-    print_r(request());
-    echo "</pre>";
-    // exit;
     authMiddleware();
     $request = validations([
         "method" => "required"
