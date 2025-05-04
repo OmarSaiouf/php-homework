@@ -3,18 +3,16 @@
 
 function products_controller()
 {
-
     authMiddleware();
     $request = validations([
         "method" => "required"
     ]);
-
     if ($request) {
         if ($request['method'] == "delete") {
             $requestData = validations([
                 "id" => "required"
             ]);
-            print_r($requestData);
+
             Product::delete_data($requestData['id']);
             go('products', null, false);
         } else if ($request['method'] == "edit") {
@@ -24,11 +22,8 @@ function products_controller()
                 "price" => "",
                 "description" => "",
                 "image" => "",
-
             ]);
-
             if ($im = upload_image($requestData['image'], "products")) {
-
                 if ($im['ok']) {
                     $requestData['image'] = $im['name'];
                     Product::update_data($requestData['id'], $requestData);
@@ -43,7 +38,6 @@ function products_controller()
                 "image" => "",
             ]);
             if ($im = upload_image($requestData['image'], "products")) {
-
                 if ($im['ok']) {
                     $requestData['image'] = $im['name'];
                 } else {
