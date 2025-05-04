@@ -3,6 +3,9 @@
 متجر لبيع الفواكه
 وظيفة php في الدورة التمهيدية في الالف مبرمج.
 
+reop in github [home work](https://github.com/OmarSaiouf/php-homework)
+
+
 ## طريقة التشغيل
 
 - اضافة قاعدة البيانات في ملف "config.php" في
