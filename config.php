@@ -1,4 +1,5 @@
 <?php
+const STORE_NAME = "OMAR";
 
 // Database conn
 const DB_HOST = 'localhost';
@@ -8,6 +9,14 @@ const DB_PASSWORD = '';
 
 
 //Base paths
-define('DOMIN', isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : './');
+define('DOMIN', $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME']);
+define('URL', DOMIN . '/php-homework');
 const BASE_STORAGE = 'assets/storage';
-const PRODUCT_PATH = BASE_STORAGE . '/products';
+
+
+
+
+
+
+
+
