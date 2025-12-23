@@ -47,6 +47,6 @@ http://localhost/php-homwork/index.php
 
 **👨‍💻 [omar saiouf]**
 
-- 💼 [LinkedIn](www.linkedin.com/in/omar-saiouf)
+- 💼 [LinkedIn](www.linkedin.com/in/omarsaiouf)
 - 🐙 [GitHub](https://github.com/OmarSaiouf)
-- 📸 [Telegram](https://t.me/OmarProgrammers)
+- 📸 [Telegram](https://t.me/omarsaiouf)
